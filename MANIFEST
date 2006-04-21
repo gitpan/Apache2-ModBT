@@ -1,0 +1,11 @@
+Changes
+lib/Apache2/ModBT.pm
+lib/Apache2/ModBT/LeechNuker.pm
+Makefile.PL
+MANIFEST			This list of files
+ModBT.xs
+ppport.h
+README
+t/Apache-ModBT.t
+typemap
+META.yml                                 Module meta-data (added by MakeMaker)
