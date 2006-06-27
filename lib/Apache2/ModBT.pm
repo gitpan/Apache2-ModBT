@@ -26,7 +26,7 @@ our @EXPORT = qw(
 	
 );
 
-our $VERSION = '0.010';
+our $VERSION = '0.018';
 
 require XSLoader;
 XSLoader::load('Apache2::ModBT', $VERSION);
@@ -35,7 +35,6 @@ XSLoader::load('Apache2::ModBT', $VERSION);
 
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
 
 =head1 NAME
 
@@ -65,6 +64,14 @@ which returns the LibBTT Tracker object for the current mod_bt process.
 When manipulating a mod_bt tracker from within Apache2, you should use
 this method instead of calling Net::BitTorrent::LibBTT->new().
 
+=over
+
+=item $r->server->ModBT_Tracker()
+
+Returns a tracker object that corresponds to the mod_bt tracker instance
+running on the current apache process. If the tracker is not enabled
+("Tracker On" is not set in httpd.conf), this will return C<undef>.
+
 =head1 SEE ALSO
 
 L<Net::BitTorrent::LibBTT>, L<http://www.crackerjack.net/mod_bt/>, L<http://perl.apache.org/>
@@ -78,7 +85,7 @@ Tyler 'Crackerjack' MacDonald, <tyler@yi.org>
 Copyright (C) 2006 by Tyler 'Crackerjack' MacDonald
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.8.4 or,
-at your option, any later version of Perl 5 you may have available.
+it under the terms of the Apache License 2.x
+(L<http://www.apache.org/licenses/LICENSE-2.0>).
 
 =cut

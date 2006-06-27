@@ -67,29 +67,28 @@ our $shunstr =
 
 return 1;
 
-sub handler
-{
+sub handler {
  my $r = shift;
  my $uri = URI->new();
  my $leechtime = $r->dir_config("MinLeechTime") || 3600;
  $uri->query($r->args);
  my(%args)=($uri->query_form());
- my $tracker = $r->server->ModBT_Tracker();
+ my $tracker;
+
+ unless($tracker = $r->server->ModBT_Tracker()) {
+  # tracker is not enabled
+  return DECLINED;
+ }     
  
- if($args{"info_hash"} && $args{"peer_id"})
- {
-  if(my $hash = $tracker->Infohash(uri_unescape($args{"info_hash"})))
-  {
-   if(my $peer = $hash->Peer(uri_unescape($args{"peer_id"})))
-   {
-    if
-    (
+ if($args{"info_hash"} && $args{"peer_id"}) {
+  if(my $hash = $tracker->Infohash(uri_unescape($args{"info_hash"}))) {
+   if(my $peer = $hash->Peer(uri_unescape($args{"peer_id"}))) {
+    if(
      (!$peer->uploaded) && ($peer->downloaded) && ($peer->left) &&
      ($hash->seeds) && ($hash->peers > ($hash->seeds + 1)) &&
      ((time() - $peer->first_t) > $leechtime) &&
      (!($peer->flags & $Shunned))
-    )
-    {
+    ) {
      warn sprintf
      (
       $shunstr, uri_escape($peer->peerid), uri_escape($peer->infohash),

@@ -1,11 +1,11 @@
 # http://module-build.sourceforge.net/META-spec.html
 #XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
 name:         Apache2-ModBT
-version:      0.010
+version:      0.018
 version_from: lib/Apache2/ModBT.pm
-installdirs:  site
+installdirs:  vendor
 requires:
-    Net::BitTorrent::LibBTT:       0.010
+    Net::BitTorrent::LibBTT:       0.016
 
 distribution_type: module
-generated_by: ExtUtils::MakeMaker version 6.30
+generated_by: ExtUtils::MakeMaker version 6.30_01
